@@ -1,0 +1,48 @@
+{
+  "input": {
+    "trade_count": 1122,
+    "mean_trade_pnl": 3.157308377896613,
+    "median_trade_pnl": 0.5,
+    "win_rate_pct": 50.71301247771836
+  },
+  "configuration": {
+    "method": "block-bootstrap",
+    "simulations": 5000,
+    "horizon_trades": 1122,
+    "block_size": 5,
+    "initial_capital": 5000.0,
+    "ruin_floor": 1000.0,
+    "seed": 42
+  },
+  "ending_balance": {
+    "p01": 4232.99,
+    "p05": 5604.375,
+    "p50": 8803.0,
+    "p95": 11991.2,
+    "p99": 13319.645000000004
+  },
+  "terminal_return_pct": {
+    "p01": -15.340199999999998,
+    "p05": 12.0875,
+    "p50": 76.05999999999999,
+    "p95": 139.82400000000004,
+    "p99": 166.39290000000005
+  },
+  "max_drawdown": {
+    "p01": 647.98,
+    "p05": 764.4250000000001,
+    "p50": 1252.0,
+    "p95": 2286.1000000000004,
+    "p99": 2963.220000000005
+  },
+  "max_drawdown_pct": {
+    "p01": 8.148079365776418,
+    "p05": 9.830621137669853,
+    "p50": 17.779055643219095,
+    "p95": 36.25618161251102,
+    "p99": 49.499565684060805
+  },
+  "probability_of_loss_pct": 2.64,
+  "probability_of_ruin_pct": 0.0,
+  "expected_shortfall_5pct_balance": 4740.496
+}
