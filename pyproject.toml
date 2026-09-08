@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "trading-monte-carlo-lab"
+name = "monte-carlo-simulator"
 version = "1.0.0"
-description = "Reproducible Monte Carlo stress tests for trade-level strategy returns"
+description = "Monte Carlo trading simulation"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -20,7 +20,7 @@ dependencies = [
 dev = ["pytest>=8.0"]
 
 [project.scripts]
-monte-carlo-lab = "monte_carlo_lab.cli:main"
+monte-carlo-simulator = "monte_carlo_lab.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

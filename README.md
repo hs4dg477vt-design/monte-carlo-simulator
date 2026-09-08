@@ -1,36 +1,29 @@
-# Trading Monte Carlo Lab
+# Monte Carlo Simulator
 
-A reproducible Python project for stress-testing trade-level strategy returns.
-It converts one historical P&L sequence into thousands of alternative equity
-paths and measures drawdown, loss, and account-survival risk.
+This is a Python project I made to test how a trading strategy might perform if
+its trades happened in different sequences. It reads a CSV of trade profits and
+losses, creates randomized equity paths, and measures the results.
 
-![Monte Carlo equity paths](results/equity_paths.png)
+The simulator can calculate:
 
-## What this project demonstrates
+- Ending balance ranges
+- Maximum drawdown
+- Probability of losing money
+- Probability of reaching a chosen account floor
+- Expected shortfall
 
-- Block-bootstrap and IID-bootstrap Monte Carlo simulation
-- Sequence-risk analysis through trade-order shuffling
-- Probability-of-ruin and expected-shortfall estimation
-- Terminal-return and maximum-drawdown distributions
-- Reproducible random seeds, command-line inputs, saved outputs, and tests
-- Clear separation between a trading strategy and its risk-validation layer
+It has three simulation options: block bootstrap, independent bootstrap, and
+trade-order shuffle. I normally use block bootstrap because it keeps short
+groups of trades together instead of assuming every trade is independent.
 
-## Why three simulation methods?
-
-`block-bootstrap` is the default because it resamples short, contiguous trade
-sequences and retains some clustering. `iid-bootstrap` is a simpler independent
-resample. `shuffle` isolates ordering risk, but every shuffled path has the same
-terminal P&L because it contains the exact same set of trades. The distinction is
-important when interpreting a Monte Carlo chart.
-
-## Quick start
+## Run it
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
-monte-carlo-lab \
+monte-carlo-simulator \
   --input sample_data/anonymized_trade_pnl.csv \
   --pnl-column pnl_points \
   --point-value 2 \
@@ -39,34 +32,16 @@ monte-carlo-lab \
   --simulations 5000 \
   --block-size 5 \
   --initial-capital 5000 \
-  --ruin-floor 1000 \
-  --output-dir results
+  --ruin-floor 1000
 ```
 
-Run the tests with:
+To run the tests:
 
 ```bash
 pytest
 ```
 
-## Output
+The sample CSV only contains anonymized trade P&L. It does not include account
+information, market data, or the rules used to generate the trades.
 
-The command writes:
-
-- `results/summary.json`: aggregate distribution and risk statistics
-- `results/path_metrics.csv`: terminal balance and drawdown for every simulation
-- `results/equity_paths.png`: sampled paths with 5th, 50th, and 95th percentiles
-
-See [the methodology](docs/methodology.md) for assumptions and limitations.
-
-## Data note
-
-The included dataset contains only anonymized, trade-level P&L outcomes from a
-personal research ledger. It excludes timestamps, market data, account details,
-and strategy entry/exit rules. The sample exists to make the code reproducible;
-its performance is not independently verified and is not evidence of future returns.
-
-## Disclaimer
-
-This repository is an educational risk-analysis project, not investment advice.
-Backtests and simulations can be wrong and cannot predict future performance.
+This is an educational project, not investment advice.
